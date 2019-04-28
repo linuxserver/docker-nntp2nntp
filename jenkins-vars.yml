@@ -2,7 +2,7 @@
 
 # jenkins variables - read documentation in https://github.com/linuxserver/pipeline-triggers for more info
 project_name: docker-nntp2nntp
-external_type: github_commit
+external_type: github_release
 release_type: stable
 release_tag: latest
 ls_branch: master
