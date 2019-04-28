@@ -1,0 +1,53 @@
+---
+
+# project information
+project_name: "nntp2nntp"
+project_url: "https://github.com/linuxserver/nntp2nntp"
+project_logo: "https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/nntp2nntp.png"
+project_blurb: |
+  [{{ project_name|capitalize }}]({{ project_url }}) proxy allow you to use your NNTP Account from multiple systems, each with own user name and password. It fully supports SSL and you can also limit the access to proxy with SSL certificates. nntp2nntp proxy is very simple and pretty fast.
+  ## Warning
+  
+  Whilst we know of no nntp2nntp security issues the [upstream code](https://github.com/linuxserver/nntp2nntp) for this project has received no changes since 06.08.15 and is likely abandoned permanently.  For this reason we strongly recommend you do not make this application public facing and if you must do so other layers of security and SSL should be considered an absolute bare minimum requirement.  We see this proxy being used primarily on a LAN so that all the users NNTP applications can share a common set of internal credentials allowing for central managment of the upstream account e.g change provider, server, thread limits for all applications with one global config change.
+project_lsio_github_repo_url: "https://github.com/linuxserver/docker-{{ project_name }}"
+
+# supported architectures
+available_architectures:
+  - { arch: "{{ arch_x86_64 }}", tag: "amd64-latest"}
+  - { arch: "{{ arch_arm64 }}", tag: "arm64v8-latest"}
+  - { arch: "{{ arch_armhf }}", tag: "arm32v6-latest"}
+
+# container parameters
+param_container_name: "{{ project_name }}"
+param_usage_include_vols: true
+param_volumes:
+  - { vol_path: "/config", vol_host_path: "<path to data>", desc: "this will store config on the docker host" }
+param_usage_include_env: true
+param_env_vars:
+  - { env_var: "PGID", env_value: "<yourUID>", desc: "specify your UID" }
+  - { env_var: "PUID", env_value: "<yourGID>", desc: "specify your GID" }
+  - { env_var: "TZ", env_value: "<yourdbpass>", desc: "specify your TimeZone e.g. Europe/London" }
+
+param_usage_include_ports: true
+param_ports:
+  - { external_port: "1563", internal_port: "1563", port_desc: "will map the container's port 1563 to port 1563 on the host" }
+
+# application setup block
+app_setup_block_enabled: true
+app_setup_block: |
+  Edit sample config file `config/nntp2nntp.conf` with upstream provider details and rename the local users.
+
+  New user passwords can be created by running the password hash generator
+  ```
+  docker exec -it nntp2nntp /usr/bin/nntp2nntp.py pass
+  ```
+  entering the desired password and copying the resulting string to the relevant user line in `/config/nntp2nntp.conf`
+
+  Example with a user called `Dave` and with a password of `password`
+  ```
+  Dave    = 5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8
+  ```
+# changelog
+changelogs:
+  - { date: "23.04.19:", desc: "Multiarch builds and build from Github fork." }
+  - { date: "15.05.18:", desc: "Initial Release." }

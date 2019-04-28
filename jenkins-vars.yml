@@ -1,0 +1,29 @@
+---
+
+# jenkins variables - read documentation in https://github.com/linuxserver/pipeline-triggers for more info
+project_name: docker-nntp2nntp
+external_type: github_commit
+release_type: stable
+release_tag: latest
+ls_branch: master
+repo_vars:
+  - EXT_GIT_BRANCH = 'master'
+  - EXT_USER = 'linuxserver'
+  - EXT_REPO = 'nntp2nntp'
+  - BUILD_VERSION_ARG = 'NNTP2NNTP_RELEASE'
+  - LS_USER = 'linuxserver'
+  - LS_REPO = 'docker-nntp2nntp'
+  - CONTAINER_NAME = 'nntp2nntp'
+  - DOCKERHUB_IMAGE = 'linuxserver/nntp2nntp'
+  - DEV_DOCKERHUB_IMAGE = 'lsiodev/nntp2nntp'
+  - PR_DOCKERHUB_IMAGE = 'lspipepr/nntp2nntp'
+  - DIST_IMAGE = 'alpine'
+  - MULTIARCH = 'true'
+  - CI = 'true'
+  - CI_WEB = 'false'
+  - CI_PORT = '1563'
+  - CI_SSL = 'false'
+  - CI_DELAY = '120'
+  - CI_DOCKERENV = 'TZ=Europe/London'
+  - CI_AUTH = ''
+  - CI_WEBPATH = ''
