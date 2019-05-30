@@ -56,9 +56,9 @@ docker create \
   --name=nntp2nntp \
   -e PUID=1000 \
   -e PGID=1000 \
-  -e PGID=<yourUID> \
-  -e PUID=<yourGID> \
-  -e TZ=<yourdbpass> \
+  -e PUID=<yourUID> \
+  -e PGID=<yourGID> \
+  -e TZ=Europe/London \
   -p 1563:1563 \
   -v <path to data>:/config \
   --restart unless-stopped \
@@ -80,9 +80,9 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - PGID=<yourUID>
-      - PUID=<yourGID>
-      - TZ=<yourdbpass>
+      - PUID=<yourUID>
+      - PGID=<yourGID>
+      - TZ=Europe/London
     volumes:
       - <path to data>:/config
     ports:
@@ -99,9 +99,9 @@ Container images are configured using parameters passed at runtime (such as thos
 | `-p 1563` | will map the container's port 1563 to port 1563 on the host |
 | `-e PUID=1000` | for UserID - see below for explanation |
 | `-e PGID=1000` | for GroupID - see below for explanation |
-| `-e PGID=<yourUID>` | specify your UID |
-| `-e PUID=<yourGID>` | specify your GID |
-| `-e TZ=<yourdbpass>` | specify your TimeZone e.g. Europe/London |
+| `-e PUID=<yourUID>` | specify your UID |
+| `-e PGID=<yourGID>` | specify your GID |
+| `-e TZ=Europe/London` | Specify a timezone to use EG Europe/London. |
 | `-v /config` | this will store config on the docker host |
 
 ## User / Group Identifiers
