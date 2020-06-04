@@ -14,6 +14,8 @@ libbz2-1.0.8-r1
 libc-utils-0.7.2-r0
 libcrypto1.1-1.1.1g-r0
 libffi-3.2.1-r6
+libintl-0.20.1-r2
+libproc-3.3.16-r0
 libressl-3.0.2-r0
 libressl3.0-libcrypto-3.0.2-r0
 libressl3.0-libssl-3.0.2-r0
@@ -25,6 +27,7 @@ musl-1.1.24-r2
 musl-utils-1.1.24-r2
 ncurses-libs-6.1_p20200118-r4
 ncurses-terminfo-base-6.1_p20200118-r4
+procps-3.3.16-r0
 py-setuptools-42.0.2-r0
 py2-pip-18.1-r0
 python2-2.7.18-r0
