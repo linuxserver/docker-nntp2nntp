@@ -25,7 +25,8 @@ RUN \
     libffi \
     libressl \
     python2 && \
-    curl -o /tmp/get-pip.py https://bootstrap.pypa.io/pip/2.7/get-pip.py && \
+  # install pip
+  curl -o /tmp/get-pip.py https://bootstrap.pypa.io/pip/2.7/get-pip.py && \
   python /tmp/get-pip.py && \ 
   # install nntp2nntp via pip package manager
   if [ -z ${NNTP2NNTP_RELEASE+x} ]; then \
