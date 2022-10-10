@@ -2,32 +2,32 @@
 
 # create keys
 [[ ! -d /config/keys ]] && \
-        mkdir -p \
-        /config/keys
+    mkdir -p \
+    /config/keys
 
 [[ ! -e /config/keys/certificate.pem ]] && \
-        libressl req -x509 -nodes -days 3650 \
-        -newkey rsa:2048 -keyout /config/keys/private-key.pem  -out /config/keys/certificate.pem \
-        -subj "/CN=nntp2nntp"
+    libressl req -x509 -nodes -days 3650 \
+    -newkey rsa:2048 -keyout /config/keys/private-key.pem  -out /config/keys/certificate.pem \
+    -subj "/CN=nntp2nntp"
 
 # Create subfolder
 [[ ! -d /config/logs ]] && \
-        mkdir -p \
-        /config/logs
+    mkdir -p \
+    /config/logs
 
 # Test for stale pid file and delete if found
 [[ -f /config/logs/nntp2nntp.pid ]] && \
-        rm /config/logs/nntp2nntp.pid
+    rm /config/logs/nntp2nntp.pid
 
 # Check if config exists in /config, copy if not
 [[ ! -e /config/nntp2nntp.conf ]] && \
-        cp /defaults/nntp2nntp.conf /config/nntp2nntp.conf
+    cp /defaults/nntp2nntp.conf /config/nntp2nntp.conf
 
 # permissions
 chown -R abc:abc \
-        /config
+    /config
 chmod u+rw \
-/config/nntp2nntp.conf
+    /config/nntp2nntp.conf
 
 # nntp2nntp cannot run in the foreground which means we cannot use services.d without constantly spawning duplicate processes
 # as a working compromise we launch the daemon from here at the cost of no service monitoring
