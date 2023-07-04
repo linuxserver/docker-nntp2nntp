@@ -10,6 +10,9 @@ project_blurb: |
 
   Whilst we know of no nntp2nntp security issues the [upstream code](https://github.com/linuxserver/nntp2nntp) for this project has received no changes since 06.08.15 and is likely abandoned permanently.  For this reason we strongly recommend you do not make this application public facing and if you must do so other layers of security and SSL should be considered an absolute bare minimum requirement.  We see this proxy being used primarily on a LAN so that all the users NNTP applications can share a common set of internal credentials allowing for central managment of the upstream account e.g change provider, server, thread limits for all applications with one global config change.
 project_lsio_github_repo_url: "https://github.com/linuxserver/docker-{{ project_name }}"
+
+project_deprecation_status: true
+
 # supported architectures
 available_architectures:
   - {arch: "{{ arch_x86_64 }}", tag: "amd64-latest"}
@@ -44,6 +47,7 @@ app_setup_block: |
   ```
 # changelog
 changelogs:
+  - {date: "04.07.23:", desc: "Deprecate container."}
   - {date: "04.07.23:", desc: "Deprecate armhf. As announced [here](https://www.linuxserver.io/blog/a-farewell-to-arm-hf)"}
   - {date: "10.10.22:", desc: "Rebase to Alpine 3.15."}
   - {date: "19.12.19:", desc: "Rebasing to alpine 3.11."}

@@ -10,16 +10,12 @@ LABEL maintainer="chbmb"
 # install build packages
 RUN \
   apk add --no-cache --virtual=build-dependencies \
+    build-base \
     cargo \
-    g++ \
-    gcc \
     libffi-dev \
     libressl-dev \
-    make \
-    musl-dev \
     openssl-dev \
-    python2-dev \
-    tar && \
+    python2-dev && \
   # install runtime packages
   apk add --no-cache \
     libffi \
@@ -34,13 +30,15 @@ RUN \
   | awk '/tag_name/{print $4;exit}' FS='[""]'); \
   fi && \
   pip install --no-cache-dir -U --find-links https://wheel-index.linuxserver.io/alpine-3.15/ \
+    typing && \
+  pip install --no-cache-dir -U --find-links https://wheel-index.linuxserver.io/alpine-3.15/ \
     https://github.com/linuxserver/nntp2nntp/archive/${NNTP2NNTP_RELEASE}.tar.gz \
     service_identity && \
   # cleanup
   apk del --purge \
     build-dependencies && \
   rm -rf \
-    /root/.cache \
+    $HOME.cache \
     /tmp/*
 
 # add local files
