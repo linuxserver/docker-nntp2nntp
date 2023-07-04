@@ -59,7 +59,7 @@ The architectures supported by this image are:
 | :----: | :----: | ---- |
 | x86-64 | ✅ | amd64-\<version tag\> |
 | arm64 | ✅ | arm64v8-\<version tag\> |
-| armhf| ✅ | arm32v7-\<version tag\> |
+| armhf | ❌ | |
 
 ## Application Setup
 
@@ -92,9 +92,9 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
+      - TZ=Etc/UTC
       - PUID=<yourUID>
       - PGID=<yourGID>
-      - TZ=Europe/London
     volumes:
       - <path to data>:/config
     ports:
@@ -109,13 +109,14 @@ docker run -d \
   --name=nntp2nntp \
   -e PUID=1000 \
   -e PGID=1000 \
+  -e TZ=Etc/UTC \
   -e PUID=<yourUID> \
   -e PGID=<yourGID> \
-  -e TZ=Europe/London \
   -p 1563:1563 \
   -v <path to data>:/config \
   --restart unless-stopped \
   lscr.io/linuxserver/nntp2nntp:latest
+
 ```
 
 ## Parameters
@@ -127,9 +128,9 @@ Container images are configured using parameters passed at runtime (such as thos
 | `-p 1563` | will map the container's port 1563 to port 1563 on the host |
 | `-e PUID=1000` | for UserID - see below for explanation |
 | `-e PGID=1000` | for GroupID - see below for explanation |
+| `-e TZ=Etc/UTC` | specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List). |
 | `-e PUID=<yourUID>` | specify your UID |
 | `-e PGID=<yourGID>` | specify your GID |
-| `-e TZ=Europe/London` | Specify a timezone to use EG Europe/London. |
 | `-v /config` | this will store config on the docker host |
 
 ## Environment variables from files (Docker secrets)
@@ -241,6 +242,7 @@ Once registered you can define the dockerfile to use with `-f Dockerfile.aarch64
 
 ## Versions
 
+* **04.07.23:** - Deprecate armhf. As announced [here](https://www.linuxserver.io/blog/a-farewell-to-arm-hf)
 * **10.10.22:** - Rebase to Alpine 3.15.
 * **19.12.19:** - Rebasing to alpine 3.11.
 * **28.06.19:** - Rebasing to alpine 3.10.

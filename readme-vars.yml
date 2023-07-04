@@ -7,31 +7,26 @@ project_logo: "https://raw.githubusercontent.com/linuxserver/docker-templates/ma
 project_blurb: |
   [{{ project_name|capitalize }}]({{ project_url }}) proxy allow you to use your NNTP Account from multiple systems, each with own user name and password. It fully supports SSL and you can also limit the access to proxy with SSL certificates. nntp2nntp proxy is very simple and pretty fast.
   ## Warning
-  
+
   Whilst we know of no nntp2nntp security issues the [upstream code](https://github.com/linuxserver/nntp2nntp) for this project has received no changes since 06.08.15 and is likely abandoned permanently.  For this reason we strongly recommend you do not make this application public facing and if you must do so other layers of security and SSL should be considered an absolute bare minimum requirement.  We see this proxy being used primarily on a LAN so that all the users NNTP applications can share a common set of internal credentials allowing for central managment of the upstream account e.g change provider, server, thread limits for all applications with one global config change.
 project_lsio_github_repo_url: "https://github.com/linuxserver/docker-{{ project_name }}"
-
 # supported architectures
 available_architectures:
-  - { arch: "{{ arch_x86_64 }}", tag: "amd64-latest"}
-  - { arch: "{{ arch_arm64 }}", tag: "arm64v8-latest"}
-  - { arch: "{{ arch_armhf }}", tag: "arm32v6-latest"}
-
+  - {arch: "{{ arch_x86_64 }}", tag: "amd64-latest"}
+  - {arch: "{{ arch_arm64 }}", tag: "arm64v8-latest"}
 # container parameters
 param_container_name: "{{ project_name }}"
 param_usage_include_vols: true
 param_volumes:
-  - { vol_path: "/config", vol_host_path: "<path to data>", desc: "this will store config on the docker host" }
+  - {vol_path: "/config", vol_host_path: "<path to data>", desc: "this will store config on the docker host"}
 param_usage_include_env: true
 param_env_vars:
-  - { env_var: "PUID", env_value: "<yourUID>", desc: "specify your UID" }
-  - { env_var: "PGID", env_value: "<yourGID>", desc: "specify your GID" }
-  - { env_var: "TZ", env_value: "Europe/London", desc: "Specify a timezone to use EG Europe/London." }
-
+  - {env_var: "PUID", env_value: "<yourUID>", desc: "specify your UID"}
+  - {env_var: "PGID", env_value: "<yourGID>", desc: "specify your GID"}
+  - {env_var: "TZ", env_value: "Europe/London", desc: "Specify a timezone to use EG Europe/London."}
 param_usage_include_ports: true
 param_ports:
-  - { external_port: "1563", internal_port: "1563", port_desc: "will map the container's port 1563 to port 1563 on the host" }
-
+  - {external_port: "1563", internal_port: "1563", port_desc: "will map the container's port 1563 to port 1563 on the host"}
 # application setup block
 app_setup_block_enabled: true
 app_setup_block: |
@@ -49,8 +44,9 @@ app_setup_block: |
   ```
 # changelog
 changelogs:
-  - { date: "10.10.22:", desc: "Rebase to Alpine 3.15." }
-  - { date: "19.12.19:", desc: "Rebasing to alpine 3.11." }
-  - { date: "28.06.19:", desc: "Rebasing to alpine 3.10." }
-  - { date: "23.04.19:", desc: "Multiarch builds and build from Github fork." }
-  - { date: "15.05.18:", desc: "Initial Release." }
+  - {date: "04.07.23:", desc: "Deprecate armhf. As announced [here](https://www.linuxserver.io/blog/a-farewell-to-arm-hf)"}
+  - {date: "10.10.22:", desc: "Rebase to Alpine 3.15."}
+  - {date: "19.12.19:", desc: "Rebasing to alpine 3.11."}
+  - {date: "28.06.19:", desc: "Rebasing to alpine 3.10."}
+  - {date: "23.04.19:", desc: "Multiarch builds and build from Github fork."}
+  - {date: "15.05.18:", desc: "Initial Release."}
